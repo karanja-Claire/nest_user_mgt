@@ -29,7 +29,10 @@ export class UserEntity {
   password: string;
 
   @Column()
-  name: string;
+  first_name: string;
+
+  @Column()
+  last_name: string;
 
   @Column()
   address: string;
@@ -37,13 +40,13 @@ export class UserEntity {
   @Column({ unique: true })
   phone_no: string;
 
-  @Column({ type: 'enum', enum: STATUS })
+  @Column({ type: 'enum', enum: STATUS, default: STATUS.INACTIVE })
   status: STATUS;
 
-  @Column()
+  @Column({ nullable: true })
   role: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: true })
   role_id: string;
 
   @CreateDateColumn()

@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsLowercase,
@@ -9,7 +10,7 @@ import {
   Validate,
 } from 'class-validator';
 
-import { UniqueValidatorPipe } from 'src/pipes/unique-validator.pipe';
+// import { UniqueValidatorPipe } from 'src/pipes/unique-validator.pipe';
 import { UserEntity } from '../entity/user.entity';
 
 /**
@@ -19,20 +20,25 @@ export class RegisterUserDto {
   @IsNotEmpty()
   @IsString()
   @IsLowercase()
-  @Validate(UniqueValidatorPipe, [UserEntity], {
-    message: 'already taken',
-  })
+  @ApiProperty()
+
+  // @Validate(UniqueValidatorPipe, [UserEntity], {
+  //   message: 'already taken',
+  // })
   username: string;
 
   @IsNotEmpty()
   @IsEmail()
   @IsLowercase()
-  @Validate(UniqueValidatorPipe, [UserEntity], {
-    message: 'already taken',
-  })
+  @ApiProperty()
+
+  // @Validate(UniqueValidatorPipe, [UserEntity], {
+  //   message: 'already taken',
+  // })
   email: string;
 
   @IsNotEmpty()
+  @ApiProperty()
   @MinLength(6, {
     message: 'minLength-{"ln":6,"count":6}',
   })
@@ -50,5 +56,21 @@ export class RegisterUserDto {
 
   @IsNotEmpty()
   @IsString()
-  name: string;
+  @ApiProperty()
+  first_name: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @ApiProperty()
+  last_name: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @ApiProperty()
+  address: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @ApiProperty()
+  phone_no: string;
 }
