@@ -1,10 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import {
+  IsDate,
   IsEmail,
   IsLowercase,
   IsNotEmpty,
   IsString,
   Matches,
+  MaxDate,
   MaxLength,
   MinLength,
   Validate,
@@ -22,19 +25,12 @@ export class RegisterUserDto {
   @IsLowercase()
   @ApiProperty()
 
-  // @Validate(UniqueValidatorPipe, [UserEntity], {
-  //   message: 'already taken',
-  // })
   username: string;
 
   @IsNotEmpty()
   @IsEmail()
   @IsLowercase()
   @ApiProperty()
-
-  // @Validate(UniqueValidatorPipe, [UserEntity], {
-  //   message: 'already taken',
-  // })
   email: string;
 
   @IsNotEmpty()
@@ -73,4 +69,12 @@ export class RegisterUserDto {
   @IsString()
   @ApiProperty()
   phone_no: string;
+
+
+  // @IsNotEmpty()
+  // @ApiProperty()
+  // @IsDate()
+  // @MaxDate(require('moment')().subtract(13, 'y').toDate())
+  // @Type(() => Date)
+  // date_of_birth: string;
 }
