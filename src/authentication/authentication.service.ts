@@ -5,6 +5,7 @@ import { AuthHelper } from './authentication.helper';
 import { UserLoginDto } from './dto/login.dto';
 import { RegisterUserDto } from './dto/register.dto';
 import { UserEntity } from './entity/user.entity';
+import { RegisterResponse } from './interface/register.interface';
 
 
 
@@ -21,14 +22,16 @@ export class AuthenticationService {
 
 
 
-  public async register(body: RegisterUserDto): Promise<UserEntity | never> {
+  public async register(body: RegisterUserDto): Promise<RegisterResponse> {
     // const { username,first_name,last_name,address,phone_no, email, password }: RegisterUserDto = body;
-    let user: UserEntity = await this.userRepository.findOne({ where: { email:body.email } });
+
+    let user = await this.userRepository.findOne({ where: { email:body.email} });
+    
 
     if (user) {
-      throw new HttpException('Conflict', HttpStatus.CONFLICT);
+      throw new HttpException('Conflict', HttpStatus.BAD_REQUEST);
     }
-
+    try{
     user = new UserEntity();
 
     user.username = body.username;
@@ -36,9 +39,16 @@ export class AuthenticationService {
     user.first_name =body.first_name;
     user.last_name= body.last_name;
     user.phone_no=body.phone_no;
+    user.address=body.address;
     user.password = this.helper.encodePassword(body.password);
-
-    return this.userRepository.save(user);
+    
+   this.userRepository.save(user);
+   return user
+  }
+   catch(error:any){    
+    const data = error.Response      
+    throw new HttpException(data, HttpStatus.BAD_REQUEST);
+   }
   }
 
   public async login(body: UserLoginDto): Promise<string | never> {

@@ -41,7 +41,7 @@ export class UserEntity {
   @Column({ nullable: true })
   date_of_birth: Date;
 
-  @Column({ unique: true })
+  @Column()
   phone_no: string;
 
   @Column({ type: 'enum', enum: STATUS, default: STATUS.INACTIVE })

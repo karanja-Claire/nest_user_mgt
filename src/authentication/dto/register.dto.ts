@@ -70,11 +70,4 @@ export class RegisterUserDto {
   @ApiProperty()
   phone_no: string;
 
-
-  // @IsNotEmpty()
-  // @ApiProperty()
-  // @IsDate()
-  // @MaxDate(require('moment')().subtract(13, 'y').toDate())
-  // @Type(() => Date)
-  // date_of_birth: string;
 }
