@@ -6,6 +6,7 @@ import {
 } from '@nestjs/typeorm';
 import { UserEntity } from 'src/authentication/entity/user.entity';
 import { ConfigService } from '@nestjs/config';
+import { ProductEntity } from 'src/products/entity/product.entity';
 
 /**
  * TypeOrm database connection configuration
@@ -24,7 +25,7 @@ class TypeOrmConfigService implements TypeOrmOptionsFactory {
       username: this.configService.get<string>('DATABASE_USER'),
       password: this.configService.get<string>('DATABASE_PASSWORD'),
       database: this.configService.get<string>('DATABASE_NAME'),
-      entities: [UserEntity],
+      entities: [UserEntity, ProductEntity],
       synchronize: this.configService.get<boolean>('DATABASE_SYNC'),
       logging: true,
       subscribers: [],

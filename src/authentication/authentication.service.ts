@@ -1,11 +1,11 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuthHelper } from './authentication.helper';
 import { UserLoginDto } from './dto/login.dto';
 import { RegisterUserDto } from './dto/register.dto';
 import { UserEntity } from './entity/user.entity';
-import { loginResponse, RegisterResponse } from './interface/register.interface';
+import { loginResponse, RegisterResponse, updateUser } from './interface/register.interface';
 
 
 
@@ -72,6 +72,20 @@ export class AuthenticationService {
 
     return this.helper.generateToken(user);
   }
-}
 
+  async updateUser(id: string, payload: updateUser) {
+    const user = await this.userRepository.findOne({ where: { id: id.toString() },
+    });
+   if (!user) {
+      throw new HttpException('user not found',HttpStatus.BAD_REQUEST);
+   }
+   if (user){
+    await this.userRepository.update({id:id},{
+      username:payload.username,
+      phone_no:payload.phone_no,
+    })
+   }
+   return user;
+  }
+}
 

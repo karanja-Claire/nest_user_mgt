@@ -10,3 +10,7 @@ export interface RegisterResponse{
 export interface loginResponse{
     accessToken:string;
 }
+export interface updateUser{
+    username:string;
+    phone_no:string;
+}

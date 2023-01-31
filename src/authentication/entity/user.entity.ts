@@ -19,7 +19,7 @@ export enum STATUS {
 })
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   username: string;
