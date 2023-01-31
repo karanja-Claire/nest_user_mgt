@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Role } from '../roles/role.decorator';
 
 export enum STATUS {
   ACTIVE = 'active',
@@ -47,8 +48,8 @@ export class UserEntity {
   @Column({ type: 'enum', enum: STATUS, default: STATUS.INACTIVE })
   status: STATUS;
 
-  @Column({ nullable: true })
-  role: string;
+  @Column({type: 'enum', enum: Role, default:Role.User })
+  role: Role;
 
   @Column({ unique: true, nullable: true })
   role_id: string;

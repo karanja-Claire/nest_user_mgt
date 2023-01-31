@@ -5,7 +5,7 @@ import { AuthHelper } from './authentication.helper';
 import { UserLoginDto } from './dto/login.dto';
 import { RegisterUserDto } from './dto/register.dto';
 import { UserEntity } from './entity/user.entity';
-import { RegisterResponse } from './interface/register.interface';
+import { loginResponse, RegisterResponse } from './interface/register.interface';
 
 
 
@@ -51,7 +51,7 @@ export class AuthenticationService {
    }
   }
 
-  public async login(body: UserLoginDto): Promise<string | never> {
+  public async login(body: UserLoginDto): Promise<any> {
     // const { email, password }: UserLoginDto = body;
     const user: UserEntity = await this.userRepository.findOne({ where: { email:body.email } });
 

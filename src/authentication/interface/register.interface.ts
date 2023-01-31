@@ -6,3 +6,7 @@ export interface RegisterResponse{
     address:string;
     phone_no:string;
 }
+
+export interface loginResponse{
+    accessToken:string;
+}

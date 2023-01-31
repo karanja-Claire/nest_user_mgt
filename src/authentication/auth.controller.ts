@@ -7,6 +7,7 @@ import { UserLoginDto } from './dto/login.dto';
 import { RegisterUserDto } from './dto/register.dto';
 import { AuthenticationService } from './authentication.service';
 import { RegisterResponse } from './interface/register.interface';
+import { Role, Roles } from './roles/role.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -23,6 +24,7 @@ export class AuthController {
   }
 
   @Post('login')
+  @Roles(Role.User)
   async login(@Body() body: UserLoginDto): Promise<string | never> {
     return await this.service.login(body);
   }
