@@ -15,6 +15,7 @@ export class orderMngtEntity{
     @Column()
     order_id:string;
 
+    
     @Column()
     customer_id:string;
 
