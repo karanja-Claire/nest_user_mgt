@@ -8,8 +8,8 @@ export enum STATUS {
     INITIATED = 'INITIATED',
   }
 export enum PAYMENT_METHOD{
-    MPESA ="mpesa",
-    CARD ="card"
+    MPESA ="MPESA",
+    CARD ="CARD"
   }
 @Entity({
     name: 'Transaction',

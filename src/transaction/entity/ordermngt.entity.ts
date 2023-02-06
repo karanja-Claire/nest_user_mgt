@@ -1,11 +1,11 @@
 import { ProductEntity } from "src/products/entity/product.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 export enum ORDER_STATUS{
-    PENDING = "pending",
-    PROCESSING = "processing",
-    SHIPPED = "shipped",
-    DELIVERED = "delivered",
-    CANCELLED ="cancelled"
+    PENDING = "PENDING",
+    PROCESSING = "PROCESSING",
+    SHIPPED = "SHIPPED",
+    DELIVERED = "DELIVERED",
+    CANCELLED ="CANCELLED"
 }
 @Entity({name:'orderMngt'})
 export class orderMngtEntity{
@@ -36,7 +36,7 @@ export class orderMngtEntity{
 
     @OneToMany(() => ProductEntity, (product) => product.id)
     @JoinColumn()
-    product: ProductEntity;
+    product: ProductEntity[];
 
 
     @Column()

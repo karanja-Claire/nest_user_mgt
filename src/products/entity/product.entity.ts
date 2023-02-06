@@ -21,6 +21,7 @@ export enum PRODUCT_CATEGORY{
 
     @Column()
     price:string;
+ 
 
     @Column()
     category:PRODUCT_CATEGORY
