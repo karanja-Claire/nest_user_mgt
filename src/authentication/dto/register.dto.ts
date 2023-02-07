@@ -24,7 +24,6 @@ export class RegisterUserDto {
   @IsString()
   @IsLowercase()
   @ApiProperty()
-
   username: string;
 
   @IsNotEmpty()
@@ -69,5 +68,4 @@ export class RegisterUserDto {
   @IsString()
   @ApiProperty()
   phone_no: string;
-
 }

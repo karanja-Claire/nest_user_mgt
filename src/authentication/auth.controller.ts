@@ -1,5 +1,13 @@
-
-import { Body, Controller, Inject, Post, Req, Res, Patch, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Inject,
+  Post,
+  Req,
+  Res,
+  Patch,
+  Param,
+} from '@nestjs/common';
 // import { JwtAuthGuard } from './auth.guard';
 import { Request } from 'express';
 import { UserEntity } from './entity/user.entity';
@@ -12,16 +20,17 @@ import { Role, Roles } from './roles/role.decorator';
 @Controller('auth')
 export class AuthController {
   constructor(
-  // @Inject(AuthenticationService)
-  private readonly authservice: AuthenticationService){}
+    // @Inject(AuthenticationService)
+    private readonly authservice: AuthenticationService,
+  ) {}
 
   @Post('register')
-  async register(@Body() 
-  body: RegisterUserDto, 
+  async register(
+    @Body()
+    body: RegisterUserDto,
   ): Promise<RegisterResponse> {
     const result = await this.authservice.register(body);
-    return result
-
+    return result;
   }
 
   @Post('login')
@@ -31,8 +40,11 @@ export class AuthController {
   }
 
   @Patch('user')
-  async edit(@Param('id')id:string,@Body()payload:updateUser):Promise<any>{
-    return await this.authservice.updateUser(id,payload)
+  async edit(
+    @Param('id') id: string,
+    @Body() payload: updateUser,
+  ): Promise<any> {
+    return await this.authservice.updateUser(id, payload);
   }
 
   @Post('refresh')
@@ -40,5 +52,3 @@ export class AuthController {
     return await this.authservice.refresh(<UserEntity>user);
   }
 }
-
-

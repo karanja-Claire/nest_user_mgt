@@ -48,12 +48,11 @@ export class UserEntity {
   @Column({ type: 'enum', enum: STATUS, default: STATUS.INACTIVE })
   status: STATUS;
 
-  @Column({type: 'enum', enum: Role, default:Role.User })
+  @Column({ type: 'enum', enum: Role, default: Role.User })
   role: Role;
 
   @Column({ unique: true, nullable: true })
   role_id: string;
-
 
   @CreateDateColumn()
   created_at: string;

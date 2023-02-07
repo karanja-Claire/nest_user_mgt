@@ -13,7 +13,7 @@ export class UserLoginDto {
   @ApiProperty()
   @IsNotEmpty()
   password: string;
-  
+
   @ApiProperty()
   @IsBoolean()
   remember?: boolean;

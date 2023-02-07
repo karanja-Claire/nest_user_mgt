@@ -27,7 +27,7 @@ class TypeOrmConfigService implements TypeOrmOptionsFactory {
       username: this.configService.get<string>('DATABASE_USER'),
       password: this.configService.get<string>('DATABASE_PASSWORD'),
       database: this.configService.get<string>('DATABASE_NAME'),
-      entities: [UserEntity, ProductEntity, orderMngtEntity,TransactionEntity ],
+      entities: [UserEntity, ProductEntity, orderMngtEntity, TransactionEntity],
       synchronize: this.configService.get<boolean>('DATABASE_SYNC'),
       logging: true,
       subscribers: [],

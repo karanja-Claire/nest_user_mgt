@@ -13,15 +13,22 @@ import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthenticationService, AuthHelper, JwtStrategy,{ provide: APP_GUARD,
-    useClass: RolesGuard}],
-  imports: [ PassportModule.register({ defaultStrategy: 'jwt', property: 'user' }),
-  JwtModule.registerAsync({
-    inject: [ConfigService],
-    useFactory: (config: ConfigService) => ({
-      secret: config.get('JWT_KEY'),
-      signOptions: { expiresIn: config.get('JWT_EXPIRES') },
+  providers: [
+    AuthenticationService,
+    AuthHelper,
+    JwtStrategy,
+    { provide: APP_GUARD, useClass: RolesGuard },
+  ],
+  imports: [
+    PassportModule.register({ defaultStrategy: 'jwt', property: 'user' }),
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        secret: config.get('JWT_KEY'),
+        signOptions: { expiresIn: config.get('JWT_EXPIRES') },
+      }),
     }),
-  }),TypeOrmModule.forFeature([UserEntity])],
+    TypeOrmModule.forFeature([UserEntity]),
+  ],
 })
 export class AuthenticationModule {}

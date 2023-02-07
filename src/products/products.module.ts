@@ -9,17 +9,18 @@ import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
 
 @Module({
-    controllers: [ProductsController],
-    providers: [ProductsService],
-    imports: [ PassportModule.register({ defaultStrategy: 'jwt', property: 'user' }),
+  controllers: [ProductsController],
+  providers: [ProductsService],
+  imports: [
+    PassportModule.register({ defaultStrategy: 'jwt', property: 'user' }),
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         secret: config.get('JWT_KEY'),
         signOptions: { expiresIn: config.get('JWT_EXPIRES') },
       }),
-    }),TypeOrmModule.forFeature([UserEntity,ProductEntity])],
+    }),
+    TypeOrmModule.forFeature([UserEntity, ProductEntity]),
+  ],
 })
-export class ProductsModule {
-
-}
+export class ProductsModule {}

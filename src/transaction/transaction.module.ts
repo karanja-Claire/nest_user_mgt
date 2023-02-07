@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 
 @Module({
-    controllers:[],
-    providers:[],
-    imports:[]
-
+  controllers: [],
+  providers: [],
+  imports: [],
 })
 export class TransactionModule {}

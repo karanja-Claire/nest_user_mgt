@@ -6,5 +6,5 @@ export interface UserResponse {
   address: string;
   phone_no: string;
   status: string;
-  date_of_birth:Date;
+  date_of_birth: Date;
 }

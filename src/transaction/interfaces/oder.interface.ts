@@ -1,7 +1,6 @@
-import { ProductEntity } from "src/products/entity/product.entity";
+import { ProductEntity } from 'src/products/entity/product.entity';
 
-export interface OrderInterface{
-    product:ProductEntity,
-    product_quantities: string,
-
+export interface OrderInterface {
+  product: ProductEntity;
+  product_quantities: string;
 }
