@@ -17,10 +17,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  // somewhere in your initialization file
   app.use(cookieParser());
-  //validator config
-  // Use Global Pipes
+
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   await app.listen(3000);
