@@ -17,14 +17,14 @@ export class TransactionService {
     private transactionRepository: Repository<TransactionEntity>,
   ) {}
 
-  async prepareTransaction(
-    payload: transactionDto,
-  ): Promise<TransactionInterface> {
-    const data = await this.prepareTransactionRecord(payload);
-    await this.prepareOrderRecord(payload);
+  // async prepareTransaction(
+  //   payload: transactionDto,
+  // ): Promise<TransactionInterface> {
+  //   const data = await this.prepareTransactionRecord(payload);
+  //   await this.prepareOrderRecord(payload);
 
-    return data;
-  }
+  //   return data;
+  // }
   async prepareTransactionRecord(payload): Promise<TransactionEntity> {
     const transaction = new TransactionEntity();
     (transaction.phoneNumber = payload.phoneNumber),
@@ -32,6 +32,7 @@ export class TransactionService {
       (transaction.transactionRef = this.generateTransactionRef().toString());
     transaction.paymentMethod = payload.paymentMethod;
     await this.transactionRepository.save(transaction);
+    await this.prepareOrderRecord(payload);
     switch (transaction.paymentMethod) {
       case PAYMENT_METHOD.MPESA:
         // handle mobile money integrations
